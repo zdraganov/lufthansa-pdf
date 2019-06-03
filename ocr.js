@@ -24,7 +24,9 @@ function getOurPanels (fileBuffer) {
 
 function getAirbusPdfPanels (fileBuffer) {
   return pdf(fileBuffer).then(data => {
-    return data.text.match(/\d{3}[A-Z]{2}/g)
+    return data.text
+      .match(/\d{3}\s?[A-Z]{2}/g)
+      .map(p => p.replace(' ', ''))
   })
 }
 
